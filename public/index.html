@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Motors - Premium Car Dealership</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-red: #8B0000;
+            --bright-red: #C41E3A;
+            --gold: #FFD700;
+            --dark-gold: #D4AF37;
+            --dark-bg: #0a0a0a;
+            --dark-secondary: #1a1a1a;
+            --dark-tertiary: #2d2d2d;
+            --text-light: #f5f5f5;
+            --text-gray: #a0a0a0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--dark-gold);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--gold), var(--dark-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.8)), 
+                        url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=1920');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, transparent 0%, var(--dark-bg) 100%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--gold), var(--bright-red));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-red), var(--bright-red));
+            color: white;
+            border: 2px solid var(--primary-red);
+        }
+
+        .btn-primary:hover {
+            background: transparent;
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(196, 30, 58, 0.3);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, var(--dark-gold), var(--gold));
+            color: var(--dark-bg);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: var(--gold);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .section-title span {
+            color: var(--bright-red);
+        }
+
+        /* Featured Cars */
+        .featured-cars {
+            background: var(--dark-secondary);
+        }
+
+        .car-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .car-card {
+            background: var(--dark-tertiary);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .car-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--dark-gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .car-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            background: var(--dark-secondary);
+        }
+
+        .car-card:hover .car-image {
+            transform: scale(1.05);
+        }
+
+        .car-image-container {
+            overflow: hidden;
+            position: relative;
+            height: 220px;
+            background: var(--dark-secondary);
+        }
+
+        .car-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: var(--dark-bg);
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .car-info {
+            padding: 1.5rem;
+        }
+
+        .car-brand {
+            color: var(--bright-red);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .car-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin: 0.5rem 0;
+            color: var(--text-light);
+        }
+
+        .car-specs {
+            display: flex;
+            gap: 1.5rem;
+            margin: 1rem 0;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .car-specs span {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .car-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin: 1rem 0;
+        }
+
+        .car-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .car-actions .btn {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Admin Panel */
+        .admin-section {
+            background: var(--dark-secondary);
+            border-top: 2px solid var(--gold);
+        }
+
+        .admin-panel {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--dark-tertiary);
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .admin-panel h3 {
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .admin-form {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .admin-form input,
+        .admin-form select,
+        .admin-form textarea {
+            padding: 0.8rem;
+            background: var(--dark-bg);
+            border: 2px solid var(--dark-tertiary);
+            color: var(--text-light);
+            border-radius: 8px;
+        }
+
+        .admin-form input:focus,
+        .admin-form select:focus,
+        .admin-form textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .admin-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .admin-buttons .btn {
+            flex: 1;
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            background: var(--dark-bg);
+        }
+
+        .comparison-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .compare-selector {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .compare-select {
+            padding: 1rem;
+            background: var(--dark-tertiary);
+            border: 2px solid var(--dark-gold);
+            color: var(--text-light);
+            font-size: 1rem;
+            border-radius: 10px;
+            min-width: 250px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .compare-select:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--dark-secondary);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .compare-table th,
+        .compare-table td {
+            padding: 1.2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--dark-tertiary);
+        }
+
+        .compare-table th {
+            background: var(--primary-red);
+            color: var(--text-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .compare-table th:first-child {
+            background: var(--dark-gold);
+            color: var(--dark-bg);
+        }
+
+        .compare-table td:first-child {
+            font-weight: 600;
+            color: var(--gold);
+            background: var(--dark-tertiary);
+        }
+
+        .compare-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .compare-image {
+            width: 150px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .winner-badge {
+            display: inline-block;
+            background: var(--gold);
+            color: var(--dark-bg);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        /* Calculator Section */
+        .calculator-section {
+            background: linear-gradient(135deg, var(--dark-secondary) 0%, var(--dark-tertiary) 100%);
+            position: relative;
+        }
+
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--dark-bg);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 2px solid var(--dark-gold);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        .calculator-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select {
+            padding: 1rem;
+            background: var(--dark-tertiary);
+            border: 2px solid transparent;
+            color: var(--text-light);
+            font-size: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .calculator-result {
+            margin-top: 2rem;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary-red), var(--bright-red));
+            border-radius: 15px;
+            animation: pulse 2s infinite;
+        }
+
+        .result-label {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .result-amount {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gold);
+        }
+
+        /* Test Drive Section */
+        .test-drive-section {
+            background: var(--dark-secondary);
+        }
+
+        .booking-container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .booking-form {
+            background: var(--dark-tertiary);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 1px solid var(--dark-gold);
+        }
+
+        .booking-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .booking-form input,
+        .booking-form select,
+        .booking-form textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--dark-bg);
+            border: 2px solid var(--dark-tertiary);
+            color: var(--text-light);
+            font-size: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .booking-form input:focus,
+        .booking-form select:focus,
+        .booking-form textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        .booking-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Testimonials */
+        .testimonials-section {
+            background: var(--dark-bg);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonial-card {
+            background: var(--dark-secondary);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-gray);
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--gold), var(--bright-red));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--dark-bg);
+        }
+
+        .author-info h4 {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .author-info span {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .rating {
+            color: var(--gold);
+            margin-top: 0.5rem;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--dark-secondary) 0%, var(--dark-bg) 100%);
+        }
+
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            padding: 2rem;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-gray);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-form-container {
+            background: var(--dark-secondary);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid var(--dark-gold);
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            background: var(--dark-tertiary);
+            border: 2px solid transparent;
+            color: var(--text-light);
+            font-size: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            padding: 3rem 5% 1rem;
+            border-top: 1px solid var(--dark-gold);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: var(--dark-tertiary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--gold);
+            color: var(--dark-bg);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--dark-tertiary);
+            color: var(--text-gray);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--gold);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            color: var(--gold);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .calculator-form {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+
+            .compare-table {
+                font-size: 0.8rem;
+            }
+
+            .compare-image {
+                width: 80px;
+                height: 60px;
+            }
+
+            .compare-selector {
+                flex-direction: column;
+            }
+
+            .compare-select {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">LUXURY MOTORS</div>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#inventory">Inventory</a>
+            <a href="#compare">Compare</a>
+            <a href="#finance">Finance</a>
+            <a href="#test-drive">Test Drive</a>
+            <a href="#contact">Contact</a>
+            <a href="#admin">Admin</a>
+        </nav>
+        <button class="mobile-menu-btn">☰</button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Experience Automotive Excellence</h1>
+            <p>Discover the world's most prestigious automobiles. From Ferrari to Lamborghini, we bring the finest luxury vehicles to discerning collectors.</p>
+            <a href="#inventory" class="btn btn-primary">Explore Collection</a>
+            <a href="#compare" class="btn btn-gold">Compare Cars</a>
+        </div>
+    </section>
+
+    <!-- Featured Cars -->
+    <section class="featured-cars" id="inventory">
+        <h2 class="section-title">Our <span>Premium</span> Collection</h2>
+        <p class="section-subtitle">Handpicked luxury vehicles from the world's most prestigious manufacturers</p>
+        
+        <div class="car-grid" id="carGrid">
+            <div class="loading">Loading cars...</div>
+        </div>
+    </section>
+
+    <!-- Admin Panel -->
+    <section class="admin-section" id="admin">
+        <h2 class="section-title">Admin <span>Panel</span></h2>
+        <p class="section-subtitle">Add, update, or remove cars from your inventory</p>
+        
+        <div class="admin-panel">
+            <h3>Add New Car</h3>
+            <form class="admin-form" id="addCarForm" enctype="multipart/form-data">
+                <div class="form-row">
+                    <input type="text" name="name" placeholder="Car Name" required>
+                    <input type="text" name="brand" placeholder="Brand" required>
+                </div>
+                <div class="form-row">
+                    <input type="number" name="price" placeholder="Price ($)" required>
+                    <select name="category">
+                        <option value="Italian">Italian</option>
+                        <option value="German">German</option>
+                        <option value="American">American</option>
+                        <option value="British">British</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <input type="text" name="engine" placeholder="Engine (e.g., 4.0L V8 Twin-Turbo)" required>
+                    <input type="text" name="horsepower" placeholder="Horsepower (e.g., 640 HP)" required>
+                </div>
+                <div class="form-row">
+                    <input type="text" name="speed" placeholder="Top Speed (e.g., 205 mph)" required>
+                    <input type="text" name="acceleration" placeholder="0-60 mph (e.g., 2.9 sec)" required>
+                </div>
+                <div class="form-row">
+                    <input type="text" name="transmission" placeholder="Transmission (e.g., 8-Speed DCT)" required>
+                    <input type="file" name="image" accept="image/*">
+                </div>
+                <textarea name="description" placeholder="Car Description" rows="3"></textarea>
+                <div class="admin-buttons">
+                    <button type="submit" class="btn btn-gold">Add Car</button>
+                    <button type="button" class="btn btn-primary" onclick="clearForm()">Clear</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section class="comparison-section" id="compare">
+        <h2 class="section-title">Compare <span>Luxury</span> Vehicles</h2>
+        <p class="section-subtitle">Select up to 3 cars to compare their specifications side by side</p>
+        
+        <div class="comparison-container">
+            <div class="compare-selector">
+                <select class="compare-select" id="compare1">
+                    <option value="">Select Car 1</option>
+                </select>
+                <select class="compare-select" id="compare2">
+                    <option value="">Select Car 2</option>
+                </select>
+                <select class="compare-select" id="compare3">
+                    <option value="">Select Car 3 (Optional)</option>
+                </select>
+            </div>
+            
+            <table class="compare-table" id="compareTable">
+                <thead>
+                    <tr>
+                        <th>Specification</th>
+                        <th id="header1">Car 1</th>
+                        <th id="header2">Car 2</th>
+                        <th id="header3">Car 3</th>
+                    </tr>
+                </thead>
+                <tbody id="compareBody">
+                    <!-- Comparison data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Calculator Section -->
+    <section class="calculator-section" id="finance">
+        <h2 class="section-title">Financing <span>Calculator</span></h2>
+        <p class="section-subtitle">Estimate your monthly payments for your dream car</p>
+        
+        <div class="calculator-container">
+            <form class="calculator-form" id="financeForm">
+                <div class="form-group">
+                    <label>Vehicle Price ($)</label>
+                    <input type="number" id="vehiclePrice" placeholder="Enter price" value="250000">
+                </div>
+                <div class="form-group">
+                    <label>Down Payment ($)</label>
+                    <input type="number" id="downPayment" placeholder="Enter down payment" value="50000">
+                </div>
+                <div class="form-group">
+                    <label>Loan Term</label>
+                    <select id="loanTerm">
+                        <option value="36">36 Months</option>
+                        <option value="48">48 Months</option>
+                        <option value="60" selected>60 Months</option>
+                        <option value="72">72 Months</option>
+                        <option value="84">84 Months</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Interest Rate (%)</label>
+                    <input type="number" id="interestRate" placeholder="Annual rate" value="5.9" step="0.1">
+                </div>
+                <div class="form-group full-width">
+                    <button type="button" class="btn btn-gold" style="width: 100%;" onclick="calculatePayment()">Calculate Payment</button>
+                </div>
+            </form>
+            
+            <div class="calculator-result" id="calculatorResult" style="display: none;">
+                <div class="result-label">Estimated Monthly Payment</div>
+                <div class="result-amount" id="monthlyPayment">$0</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Test Drive Section -->
+    <section class="test-drive-section" id="test-drive">
+        <h2 class="section-title">Schedule a <span>Test Drive</span></h2>
+        <p class="section-subtitle">Experience the thrill of driving your dream car</p>
+        
+        <div class="booking-container">
+            <form class="booking-form" id="testDriveForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Full Name *</label>
+                        <input type="text" id="tdName" required placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number *</label>
+                        <input type="tel" id="tdPhone" required placeholder="Enter phone number">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Email Address *</label>
+                        <input type="email" id="tdEmail" required placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Car *</label>
+                        <select id="tdCar" required>
+                            <option value="">Select a car</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Preferred Date *</label>
+                        <input type="date" id="tdDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Time *</label>
+                        <select id="tdTime" required>
+                            <option value="">Select time</option>
+                            <option value="09:00">9:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                            <option value="17:00">5:00 PM</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Additional Requests</label>
+                    <textarea id="tdMessage" placeholder="Any special requests or questions?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%;">Schedule Test Drive</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials-section">
+        <h2 class="section-title">What Our <span>Clients</span> Say</h2>
+        <p class="section-subtitle">Trusted by discerning collectors worldwide</p>
+        
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The team at Luxury Motors made my dream of owning a Ferrari come true. Their expertise and attention to detail are unmatched. Highly recommended!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">MR</div>
+                    <div class="author-info">
+                        <h4>Michael Rodriguez</h4>
+                        <span>Ferrari 488 GTB Owner</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Professional, knowledgeable, and truly passionate about cars. They helped me find the perfect Lamborghini. The comparison tool was incredibly helpful!"</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">SC</div>
+                    <div class="author-info">
+                        <h4>Sarah Chen</h4>
+                        <span>Lamborghini Huracan Owner</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <p class="testimonial-text">"From the financing options to the test drive experience, everything was exceptional. These guys truly understand luxury automotive."</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">JW</div>
+                    <div class="author-info">
+                        <h4>James Wilson</h4>
+                        <span>Porsche 911 Turbo Owner</span>
+                        <div class="rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Get In Touch</h3>
+                <div class="contact-item">
+                    <div class="contact-icon">📍</div>
+                    <div>
+                        <strong>Address</strong><br>
+                        1234 Luxury Lane, Beverly Hills, CA 90210
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <div>
+                        <strong>Phone</strong><br>
+                        +1 (888) 555-LUXURY
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉️</div>
+                    <div>
+                        <strong>Email</strong><br>
+                        sales@luxurymotors.com
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🕐</div>
+                    <div>
+                        <strong>Showroom Hours</strong><br>
+                        Mon-Sat: 9AM - 7PM<br>
+                        Sunday: 11AM - 5PM
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-form-container">
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <label>Your Name</label>
+                        <input type="text" id="cName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <input type="email" id="cEmail" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" id="cSubject" placeholder="What is this about?" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Message</label>
+                        <textarea id="cMessage" placeholder="How can we help you?" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Luxury Motors</h4>
+                <p style="color: var(--text-gray);">Your premier destination for luxury and exotic automobiles. Since 1985.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">f</a>
+                    <a href="#" class="social-link">in</a>
+                    <a href="#" class="social-link">ig</a>
+                    <a href="#" class="social-link">tw</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#inventory">Inventory</a></li>
+                    <li><a href="#compare">Compare</a></li>
+                    <li><a href="#finance">Finance</a></li>
+                    <li><a href="#test-drive">Test Drive</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Brands</h4>
+                <ul>
+                    <li><a href="#">Ferrari</a></li>
+                    <li><a href="#">Lamborghini</a></li>
+                    <li><a href="#">Porsche</a></li>
+                    <li><a href="#">Mercedes-Benz</a></li>
+                    <li><a href="#">BMW</a></li>
+                    <li><a href="#">Audi</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Financing</a></li>
+                    <li><a href="#">Trade-In</a></li>
+                    <li><a href="#">Warranty</a></li>
+                    <li><a href="#">Detailing</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Luxury Motors. All rights reserved. | Privacy Policy | Terms of Service</p>
+        </div>
+    </footer>
+
+    <script>
+        // Global car data
+        let cars = [];
+
+        // API Base URL
+        const API_URL = '';
+
+        // Format price with commas
+        function formatPrice(price) {
+            return '$' + price.toLocaleString();
+        }
+
+        // Get image URL
+        function getImageUrl(imagePath) {
+            if (!imagePath) return 'https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600';
+            if (imagePath.startsWith('http')) return imagePath;
+            return imagePath;
+        }
+
+        // Fetch cars from API
+        async function fetchCars() {
+            try {
+                const response = await fetch('/api/cars');
+                cars = await response.json();
+                renderCars();
+                populateCompareDropdowns();
+                populateCarSelection();
+            } catch (error) {
+                console.error('Error fetching cars:', error);
+                document.getElementById('carGrid').innerHTML = '<div class="loading">Error loading cars. Please try again later.</div>';
+            }
+        }
+
+        // Render car cards
+        function renderCars() {
+            const carGrid = document.getElementById('carGrid');
+            if (cars.length === 0) {
+                carGrid.innerHTML = '<div class="loading">No cars in inventory. Add some cars using the Admin panel!</div>';
+                return;
+            }
+            carGrid.innerHTML = cars.map((car, index) => `
+                <div class="car-card fade-in" style="animation-delay: ${index * 0.1}s">
+                    <div class="car-image-container">
+                        <img src="${getImageUrl(car.image)}" alt="${car.name}" class="car-image" onerror="this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=600'">
+                        <span class="car-badge">${car.category || 'Premium'}</span>
+                    </div>
+                    <div class="car-info">
+                        <div class="car-brand">${car.brand}</div>
+                        <h3 class="car-name">${car.name}</h3>
+                        <div class="car-specs">
+                            <span>⚡ ${car.specs?.horsepower || 'N/A'}</span>
+                            <span>🏎️ ${car.specs?.speed || 'N/A'}</span>
+                            <span>⏱️ ${car.specs?.acceleration || 'N/A'}</span>
+                        </div>
+                        <div class="car-price">${formatPrice(car.price)}</div>
+                        <div class="car-actions">
+                            <button class="btn btn-primary" onclick="selectCarForCompare(${car.id})">Compare</button>
+                            <button class="btn btn-gold" onclick="selectCarForTestDrive(${car.id})">Book Test Drive</button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Populate comparison dropdowns
+        function populateCompareDropdowns() {
+            const dropdowns = ['compare1', 'compare2', 'compare3'];
+            dropdowns.forEach(id => {
+                const select = document.getElementById(id);
+                select.innerHTML = '<option value="">Select Car</option>' + 
+                    cars.map(car => `<option value="${car.id}">${car.brand} ${car.name}</option>`).join('');
+            });
+        }
+
+        // Populate car selection in test drive form
+        function populateCarSelection() {
+            const select = document.getElementById('tdCar');
+            select.innerHTML = '<option value="">Select a car</option>' + 
+                cars.map(car => `<option value="${car.id}">${car.brand} ${car.name}</option>`).join('');
+        }
+
+        // Update comparison table
+        function updateComparison() {
+            const selected = [
+                document.getElementById('compare1').value,
+                document.getElementById('compare2').value,
+                document.getElementById('compare3').value
+            ].filter(Boolean);
+
+            if (selected.length === 0) {
+                document.getElementById('compareBody').innerHTML = '<tr><td colspan="4" style="text-align: center; padding: 2rem; color: var(--text-gray);">Please select cars to compare</td></tr>';
+                return;
+            }
+
+            const selectedCars = selected.map(id => cars.find(c => c.id == id));
+
+            // Update headers
+            ['header1', 'header2', 'header3'].forEach((headerId, i) => {
+                const header = document.getElementById(headerId);
+                if (selectedCars[i]) {
+                    header.innerHTML = `<img src="${getImageUrl(selectedCars[i].image)}" alt="${selectedCars[i].name}" class="compare-image" onerror="this.src='https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=150'"><br>${selectedCars[i].name}`;
+                } else {
+                    header.textContent = '—';
+                }
+            });
+
+            // Find winners for each category
+            const getWinner = (key, higher = true) => {
+                const values = selectedCars.map(car => car ? parseFloat((car.specs?.[key] || car[key] || '0').replace(/[^0-9.]/g, '')) : 0);
+                const maxIndex = higher ? values.indexOf(Math.max(...values)) : values.indexOf(Math.min(...values));
+                return maxIndex;
+            };
+
+            const speedWinner = getWinner('speed');
+            const hpWinner = getWinner('horsepower');
+            const accWinner = getWinner('acceleration', false);
+            const priceWinner = getWinner('price', false);
+
+            // Build comparison rows
+            const rows = [
+                { label: 'Brand', key: 'brand', type: 'text' },
+                { label: 'Price', key: 'price', type: 'price', winner: priceWinner },
+                { label: 'Engine', key: 'engine', type: 'spec' },
+                { label: 'Horsepower', key: 'horsepower', type: 'spec', winner: hpWinner },
+                { label: 'Top Speed', key: 'speed', type: 'spec', winner: speedWinner },
+                { label: '0-60 mph', key: 'acceleration', type: 'spec', winner: accWinner },
+                { label: 'Transmission', key: 'transmission', type: 'spec' }
+            ];
+
+            document.getElementById('compareBody').innerHTML = rows.map(row => {
+                return `<tr>
+                    <td>${row.label}</td>
+                    ${selectedCars.map((car, i) => {
+                        if (!car) return '<td>—</td>';
+                        let value;
+                        if (row.type === 'price') {
+                            value = formatPrice(car.price);
+                        } else if (row.type === 'spec') {
+                            value = car.specs?.[row.key] || 'N/A';
+                        } else {
+                            value = car[row.key] || 'N/A';
+                        }
+                        const isWinner = row.winner === i && selectedCars.length > 1;
+                        return `<td>${value}${isWinner ? '<span class="winner-badge">Best</span>' : ''}</td>`;
+                    }).join('')}
+                </tr>`;
+            }).join('');
+        }
+
+        // Calculate financing
+        function calculatePayment() {
+            const price = parseFloat(document.getElementById('vehiclePrice').value) || 0;
+            const downPayment = parseFloat(document.getElementById('downPayment').value) || 0;
+            const term = parseInt(document.getElementById('loanTerm').value);
+            const rate = parseFloat(document.getElementById('interestRate').value) || 0;
+
+            const principal = price - downPayment;
+            const monthlyRate = rate / 100 / 12;
+            const numberOfPayments = term;
+
+            let monthlyPayment;
+            if (monthlyRate === 0) {
+                monthlyPayment = principal / numberOfPayments;
+            } else {
+                monthlyPayment = principal * (monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) / 
+                                 (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+            }
+
+            document.getElementById('monthlyPayment').textContent = formatPrice(Math.round(monthlyPayment));
+            document.getElementById('calculatorResult').style.display = 'block';
+        }
+
+        // Select car for comparison
+        function selectCarForCompare(carId) {
+            for (let i = 1; i <= 3; i++) {
+                const dropdown = document.getElementById('compare' + i);
+                if (!dropdown.value) {
+                    dropdown.value = carId;
+                    updateComparison();
+                    document.getElementById('compare').scrollIntoView({ behavior: 'smooth' });
+                    return;
+                }
+            }
+            document.getElementById('compare1').value = carId;
+            updateComparison();
+            document.getElementById('compare').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Select car for test drive
+        function selectCarForTestDrive(carId) {
+            document.getElementById('tdCar').value = carId;
+            document.getElementById('test-drive').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Clear admin form
+        function clearForm() {
+            document.getElementById('addCarForm').reset();
+        }
+
+        // Handle add car form submission
+        document.getElementById('addCarForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            
+            try {
+                const response = await fetch('/api/cars', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (response.ok) {
+                    alert('Car added successfully!');
+                    this.reset();
+                    fetchCars();
+                } else {
+                    alert('Error: ' + result.message);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error adding car. Please try again.');
+            }
+        });
+
+        // Test drive form submission
+        document.getElementById('testDriveForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('tdName').value,
+                phone: document.getElementById('tdPhone').value,
+                email: document.getElementById('tdEmail').value,
+                carId: document.getElementById('tdCar').value,
+                date: document.getElementById('tdDate').value,
+                time: document.getElementById('tdTime').value,
+                message: document.getElementById('tdMessage').value
+            };
+            
+            try {
+                const response = await fetch('/api/test-drive', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                alert(result.message);
+                this.reset();
+            } catch (error) {
+                alert('Error scheduling test drive. Please try again.');
+            }
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('cName').value,
+                email: document.getElementById('cEmail').value,
+                subject: document.getElementById('cSubject').value,
+                message: document.getElementById('cMessage').value
+            };
+            
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+                
+                const result = await response.json();
+                alert(result.message);
+                this.reset();
+            } catch (error) {
+                alert('Error sending message. Please try again.');
+            }
+        });
+
+        // Event listeners for comparison dropdowns
+        ['compare1', 'compare2', 'compare3'].forEach(id => {
+            document.getElementById(id).addEventListener('change', updateComparison);
+        });
+
+        // Set minimum date for test drive to today
+        document.getElementById('tdDate').min = new Date().toISOString().split('T')[0];
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchCars();
+        });
+    </script>
+</body>
+</html>
+
