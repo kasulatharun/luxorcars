@@ -1,4 +1,4 @@
-# Luxury Motors - Premium Car Dealership
+# luxorcars - Premium Car Dealership
 
 A full-stack luxury car dealership website with admin panel.
 
